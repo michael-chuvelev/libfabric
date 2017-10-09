@@ -43,6 +43,7 @@ common_srcs = \
 	src/fasthash.c \
 	src/indexer.c \
 	src/iov.c \
+	src/sched.c \
 	prov/util/src/util_atomic.c \
 	prov/util/src/util_attr.c   \
 	prov/util/src/util_av.c     \
@@ -151,6 +152,7 @@ rdmainclude_HEADERS += \
 	$(top_srcdir)/include/rdma/fi_endpoint.h \
 	$(top_srcdir)/include/rdma/fi_errno.h \
 	$(top_srcdir)/include/rdma/fi_tagged.h \
+	$(top_srcdir)/include/rdma/fi_sched.h \
 	$(top_srcdir)/include/rdma/fi_trigger.h
 
 if HAVE_DIRECT
