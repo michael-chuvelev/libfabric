@@ -162,6 +162,22 @@ int fi_sched_test(struct fi_sched *sched, void *buf, size_t count, int *completi
 #define FI_SCHED_UNIT_CNT(op)         (((op)->unit >> 32) & 0xffffffff)
 #define FI_SCHED_UNIT(num, cnt)       ((((cnt) & 0xffffffff) << 32) | ((num) & 0xffffffff))
 
+/*****************************/
+/* Schedule helper functions */
+/*****************************/
+
+struct fi_sched_space {
+    char *ptr;
+    size_t left;
+    size_t used;
+};
+
+struct fi_sched_op * fi_sched_op_create(struct fi_sched_space *space, enum fi_sched_op_code code, ...);
+void fi_sched_op_array_populate(struct fi_sched_op_array *array, int index, struct fi_sched_op *op);
+struct fi_sched_op_list **
+fi_sched_op_list_populate(struct fi_sched_space *space, struct fi_sched_op_list **tailp, struct fi_sched_op *op);
+void fi_sched_op_print(struct fi_sched_op *op, int level);
+
 #ifdef __cplusplus
 }
 #endif

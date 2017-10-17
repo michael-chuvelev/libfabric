@@ -90,28 +90,6 @@
                        nested_op = l->op; \
                        nested_hlist; \
                    })
-#if 0
-#define SWITCH_CASE(current_op, nested_op, helement, harray, hlist) \
-    do { \
-        switch((current_op)->code) { \
-            CASE(FI_SCHED_OP_CODE_ELEMENT, helement); \
-            CASE(FI_SCHED_OP_CODE_ARRAY, \
-                    struct fi_sched_op * nested_op; \
-                    int i; \
-                    for (i = 0; i < (current_op)->u.array->nop; i++) { \
-                        nested_op = (current_op)->u.array->op[i]; \
-                        harray; \
-                    }); \
-            CASE(FI_SCHED_OP_CODE_LIST, \
-                    struct fi_sched_op * nested_op; \
-                    struct fi_sched_op_list * l; \
-                    for (l = (current_op)->u.list; l; l = l->next) { \
-                        nested_op = l->op; \
-                        hlist; \
-                    }); \
-        } \
-    } while(0)
-#endif
 
 /* pt2pt operation handlers */
 
@@ -261,13 +239,9 @@ fi_sched_test(struct fi_sched *sched, void *buf, size_t count, int *completion_f
     return ret;
 }
 
+/*****************************/
 /* Schedule helper functions */
-
-struct fi_sched_space {
-    char *ptr;
-    size_t left;
-    size_t used;
-};
+/*****************************/
 
 #define RESERVE_SPACE(buf, type, count, space) \
     type *buf = (type *)(space)->ptr; \
