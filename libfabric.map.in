@@ -16,6 +16,7 @@ FABRIC_1.0 {
 		fi_sched_issue;
 		fi_sched_wait;
 		fi_sched_op_create;
+		fi_sched_op_array_populate;
 		fi_sched_op_list_populate;
 		fi_sched_op_print;
 		@FI_DIRECT_PROVIDER_API_10@
